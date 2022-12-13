@@ -49,7 +49,8 @@ def predict_model(tenure,gender,Partner,Dependents,MonthlyCharges,PhoneService,M
     return predict
 
     # app interface using blocks
-with gr.Blocks() as demo:
+with gr.Blocks(css=".gradio-container {background-color: powderblue}") as demo:
+    
     gr.Markdown("Classification Model that Predicts Customer Churn")
     with gr.Row():
         tenure = gr.Slider(0, 100)
