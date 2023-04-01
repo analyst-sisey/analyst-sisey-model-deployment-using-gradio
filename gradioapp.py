@@ -31,19 +31,11 @@ def predict_model(tenure,gender,Partner,Dependents,MonthlyCharges,PhoneService,M
    
     categorical_features= [gender,Partner,Dependents,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,PaymentMethod,PaperlessBilling,Contract]
     numeric_features =[tenure,MonthlyCharges]
-    #print(categorical_features)
     df_new = pd.DataFrame([numeric_features],columns=[tenure,MonthlyCharges])
     df_new1 = pd.DataFrame([categorical_features],columns=[gender,Partner,Dependents,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,PaymentMethod,PaperlessBilling,Contract])
     
-    encoded_features1 = label_encoder.fit_transform(df_new1[categorical_features])
-    #['tenure','Contract','gender','MonthlyCharges','PaymentMethod','PaperlessBilling','Dependents','Partner','TechSupport','PhoneService','DeviceProtection','InternetService','MultipleLines']
-    #print(encoded_features1)
-    
     encoded_features1 =  pd.DataFrame([encoded_features1], columns= [gender,Partner,Dependents,PhoneService,MultipleLines,InternetService,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,PaymentMethod,PaperlessBilling,Contract])
     X_test1 = pd.concat([df_new, encoded_features1],axis=1)
-    #print(X_test1) 
-
-    scaler2.fit_transform(X_test1)
     
     predict = model.predict(X_test1)
     return predict
